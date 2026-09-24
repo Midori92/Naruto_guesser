@@ -10,7 +10,7 @@ img{
 
 .cadran{
   background-color: blueviolet;
-  opacity: 50%;
+  
   z-index: -1;
   padding: 10px;
   margin: auto;
@@ -29,12 +29,20 @@ img{
   flex-direction: column;
   align-items: center;
   margin: auto;
+ 
   border-radius: 10px;
   padding: 5px;
-  background-color: burlywood;
+  
   height: 200px;
   width: 300px;
+  border: black solid 1px;
   
+}
+
+.cadran :hover{
+
+  scale: 1.05;
+
 }
 
 .presentation{
