@@ -75,7 +75,7 @@ function App() {
 
         {value_id.map((item) => (
           <div className="card" key={item}>
-            <Card id={item} />
+            <Card id={item} compare={guessId} />
           </div>
         ))}
 
