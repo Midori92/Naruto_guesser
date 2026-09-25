@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react'
 
-function Card(props) {
+
+function Card({id, onCardClick}) {
+  
   const [character, setCharacter] = useState(null)
   const [selected, setSelected] = useState(false)
 
   useEffect(() => {
-    fetch(`https://dattebayo-api.onrender.com/characters/${props.id}`)
+    fetch(`https://dattebayo-api.onrender.com/characters/${id}`)
       .then(response => response.json())
       .then(data => {
         setCharacter(data)
@@ -13,19 +15,17 @@ function Card(props) {
       .catch(error => {
         console.error('Erreur :', error)
       })
-  }, [props.id])
+  }, [id])
 
   if (!character) {
     return <p>Chargement...</p>
   }
 
-  function Click_value() {
-    setSelected(!selected)
-  }
+ 
 
   return (
     <>
-      <div className="card" onClick={Click_value}>
+      <div className="card" onClick={() => onCardClick(id)}>
         <h1>{character.name}</h1>
 
         <img
@@ -36,8 +36,7 @@ function Card(props) {
 
     
 
-      {selected && <p>{props.compare == character.id ? "Bonne réponse" : "Mauvaise reponse"}</p>
-      }
+    
     </>
   )
 }

@@ -3,11 +3,13 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Card from './Card.jsx'
 
+
+
+
 function App() {
 
-  // Générer 12 IDs différents
   const [value_id] = useState(() => {
-    const ids = []
+  const ids = []
 
     while (ids.length < 12) {
       const id = Math.floor(Math.random() * 100) + 1
@@ -22,11 +24,10 @@ function App() {
 
   // Personnage à deviner
   const [character, setCharacter] = useState(null)
-
-  // ID du personnage à deviner
   const [guessId, setGuessId] = useState(null)
 
-  // Choisir un personnage parmi les 12
+
+  
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * value_id.length)
     const randomId = value_id[randomIndex]
@@ -44,6 +45,24 @@ function App() {
       })
 
   }, [value_id])
+
+
+function CardClick(clickedID){
+
+  if (clickedID == guessId){
+    console.log("Good Answer")
+    
+  }
+
+  else{
+    console.log("Wrong Answer")
+  }
+
+}
+
+  if (!character) {
+    return <p>Chargement...</p>
+  }
 
 
   return (
@@ -75,7 +94,7 @@ function App() {
 
         {value_id.map((item) => (
           <div className="card" key={item}>
-            <Card id={item} compare={guessId} />
+            <Card id={item} onCardClick={CardClick} />
           </div>
         ))}
 
@@ -85,4 +104,5 @@ function App() {
 }
 
 export default App
+
 
