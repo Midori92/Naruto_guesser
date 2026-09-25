@@ -6,9 +6,10 @@ import Card from './Card.jsx'
 
 
 
-function App() {
 
-  const [value_id] = useState(() => {
+
+function shuffleID(){
+
   const ids = []
 
     while (ids.length < 12) {
@@ -20,15 +21,21 @@ function App() {
     }
 
     return ids
-  })
+  }
 
-  // Personnage à deviner
-  const [character, setCharacter] = useState(null)
-  const [guessId, setGuessId] = useState(null)
+function App() {
+
+    const [value_id, setValueId] = useState(() => shuffleID())
+    const [character, setCharacter] = useState(null)
+    const [guessId, setGuessId] = useState(null)
+
+ 
+
+    
 
 
-  
-  useEffect(() => {
+ useEffect(() => {
+
     const randomIndex = Math.floor(Math.random() * value_id.length)
     const randomId = value_id[randomIndex]
 
@@ -51,11 +58,13 @@ function CardClick(clickedID){
 
   if (clickedID == guessId){
     console.log("Good Answer")
+    setValueId(shuffleID())
     
   }
 
   else{
     console.log("Wrong Answer")
+    
   }
 
 }
