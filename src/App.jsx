@@ -28,6 +28,8 @@ function App() {
     const [value_id, setValueId] = useState(() => shuffleID())
     const [character, setCharacter] = useState(null)
     const [guessId, setGuessId] = useState(null)
+    const [score, setScore] = useState(0)
+    const [best_score, setBestscore] = useState(0)
 
  
 
@@ -58,12 +60,14 @@ function CardClick(clickedID){
 
   if (clickedID == guessId){
     console.log("Good Answer")
+    setScore(score + 1)
     setValueId(shuffleID())
     
   }
 
   else{
     console.log("Wrong Answer")
+    setScore(0)
     
   }
 
@@ -85,6 +89,11 @@ function CardClick(clickedID){
         <p>
           Click on the Naruto character wearing the following name:
         </p>
+
+        <div className='score_content'> 
+          <p className='score'> Score: {score} </p>
+          <p className='best_score'> Best Score: {score > best_score ? setBestscore(score) : best_score}</p>
+        </div>
 
         <div className="guesser">
 

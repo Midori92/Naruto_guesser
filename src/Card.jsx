@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 function Card({id, onCardClick}) {
   
   const [character, setCharacter] = useState(null)
-  const [selected, setSelected] = useState(false)
+
 
   useEffect(() => {
     fetch(`https://dattebayo-api.onrender.com/characters/${id}`)
